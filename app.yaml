@@ -1,0 +1,84 @@
+apiVersion: kfdef.apps.kubeflow.org/v1alpha1
+kind: KfDef
+metadata:
+  creationTimestamp: null
+  name: kubeflowappdir
+  namespace: kubeflow
+spec:
+  appdir: /home/datasciencedude/kubeflowappdir
+  componentParams:
+    cert-manager:
+    - initRequired: true
+      name: acmeEmail
+      value: datasciencedude@gmail.com
+    cloud-endpoints:
+    - name: secretName
+      value: admin-gcp-sa
+    iap-ingress:
+    - initRequired: true
+      name: ipName
+      value: kubeflowappdir-ip
+    - initRequired: true
+      name: hostname
+      value: kubeflowappdir.endpoints.kubeflowproject-237215.cloud.goog
+    notebook-controller:
+    - name: injectGcpCredentials
+      value: "true"
+    pipeline:
+    - name: mysqlPd
+      value: kubeflowappdir-storage-metadata-store
+    - name: minioPd
+      value: kubeflowappdir-storage-artifact-store
+    spartakus:
+    - initRequired: true
+      name: usageId
+      value: "5605227597165693974"
+    - initRequired: true
+      name: reportUsage
+      value: "true"
+  components:
+  - metacontroller
+  - ambassador
+  - argo
+  - centraldashboard
+  - cert-manager
+  - cloud-endpoints
+  - gcp-credentials-admission-webhook
+  - gpu-driver
+  - iap-ingress
+  - jupyter-web-app
+  - katib
+  - notebook-controller
+  - pipeline
+  - pytorch-operator
+  - spartakus
+  - tensorboard
+  - tf-job-operator
+  email: datasciencedude@gmail.com
+  hostname: kubeflowappdir.endpoints.kubeflowproject-237215.cloud.goog
+  ipName: kubeflowappdir-ip
+  packages:
+  - argo
+  - common
+  - examples
+  - gcp
+  - jupyter
+  - katib
+  - metacontroller
+  - modeldb
+  - mpi-job
+  - pipeline
+  - pytorch-job
+  - seldon
+  - tensorboard
+  - tf-serving
+  - tf-training
+  platform: gcp
+  project: kubeflowproject-237215
+  repo: /home/datasciencedude/kubeflowappdir/.cache/master/kubeflow
+  serverVersion: file:/home/datasciencedude/kubeflowappdir/.cache/master/bootstrap/k8sSpec/v1.11.7/api/openapi-spec/swagger.json
+  useBasicAuth: false
+  useIstio: false
+  version: master
+  zone: us-east1-d
+status: {}
